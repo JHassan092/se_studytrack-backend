@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import authRoutes from "./routes/auth.js";
+import cardRoutes from "./routes/cards.js";
+import collectionRoutes from "./routes/collections.js";
 
 dotenv.config();
 
@@ -19,6 +21,8 @@ mongoose
 
 // ROUTES
 app.use("/auth", authRoutes);
+app.use("/cards", cardRoutes);
+app.use("/collections", collectionRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running");
