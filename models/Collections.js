@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Card from "./Cards.js";
 
 const collectionSchema = new mongoose.Schema({
   name: {
@@ -10,6 +11,12 @@ const collectionSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+});
+
+collectionSchema.pre("findOneAndDelete", async function (next) {
+  const collectionId = this.getQuery()._id;
+  await Card.deleteMany({ collection: collectionId });
+  next();
 });
 
 const Collection = mongoose.model("Collection", collectionSchema);

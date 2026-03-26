@@ -46,4 +46,41 @@ router.get("/:id", authMiddleware, async (req, res) => {
   }
 });
 
+router.put(":/id", authMiddleware, async (req, res) => {
+  try {
+    const { name } = req.body;
+
+    const updatedCollection = await Collection.findByIdAndUpdate(
+      { _id: req.params.id, owner: req.user.id },
+      { name },
+      { new: true, runValidators: true },
+    );
+
+    if (!updatedCollection) {
+      return res.status(404).json({ error: "Collection not found" });
+    }
+
+    res.json(updatedCollection);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.delete("/:id", authMiddleware, async (req, res) => {
+  try {
+    const deletedCollection = await Collection.findByIdAndDelete({
+      _id: req.params.id,
+      owner: req.user.id,
+    });
+
+    if (!deletedCollection) {
+      return res.status(404).json({ error: "Collection not found" });
+    }
+
+    res.json({ message: "Collection deleted successfully" });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 export default router;
