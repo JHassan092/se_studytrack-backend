@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
 import cardRoutes from "./routes/cards.js";
 import collectionRoutes from "./routes/collections.js";
+import progressRoutes from "./routes/progress.js";
+import reviewRoutes from "./routes/review.js";
 
 dotenv.config();
 
@@ -23,6 +25,8 @@ mongoose
 app.use("/auth", authRoutes);
 app.use("/cards", cardRoutes);
 app.use("/collections", collectionRoutes);
+app.use("/progress", progressRoutes);
+app.use("/review", reviewRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running");
