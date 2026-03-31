@@ -13,10 +13,9 @@ const collectionSchema = new mongoose.Schema({
   },
 });
 
-collectionSchema.pre("findOneAndDelete", async function (next) {
+collectionSchema.pre("findOneAndDelete", async function () {
   const collectionId = this.getQuery()._id;
   await Card.deleteMany({ collection: collectionId });
-  next();
 });
 
 const Collection = mongoose.model("Collection", collectionSchema);

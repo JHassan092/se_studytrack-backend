@@ -13,6 +13,7 @@ router.post("/", authMiddleware, async (req, res) => {
       question,
       answer,
       collection,
+      owner: req.user.id,
     });
 
     await newCard.save();

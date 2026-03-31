@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const progressSchema = new mongoose.Schema({
   card: { type: mongoose.Schema.Types.ObjectId, ref: "Card", required: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },

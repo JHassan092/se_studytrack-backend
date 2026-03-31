@@ -1,5 +1,9 @@
+import express from "express";
+
 import authMiddleware from "../middleware/authMiddleware.js";
 import Progress from "../models/Progress.js";
+
+const router = express.Router();
 
 router.post("/:cardId", authMiddleware, async (req, res) => {
   try {
