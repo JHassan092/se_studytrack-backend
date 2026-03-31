@@ -10,7 +10,7 @@ const cardSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    collection: {
+    collectionId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Collection",
       required: true,
